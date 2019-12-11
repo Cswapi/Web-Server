@@ -52,7 +52,7 @@ func registerRouter(router *mux.Router, r *render.Render) {
 
 	router.Handle("/api/", negroni.New(
 		negroni.HandlerFunc(models.ValidateMid),
-		negroni.HandlerFunc(apiHandler(r)),
+		negroni.HandlerFunc(apiRootHandler(r)),
 	))
 	// 将处理函数注册到路由中，并添加http方法
 	router.HandleFunc("/login", loginHandler).Methods("POST")

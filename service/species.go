@@ -15,7 +15,7 @@ import (
 func speciesHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access Origin", "*")
 		req.ParseForm()
 		page := 1
 		w.Write([]byte("{\"result\" : \n["))
@@ -48,11 +48,11 @@ func getSpeciesById(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	data := database.GetValue([]byte("species"), []byte(vars["id"]))
-	w.Write([]byte(data))
+	value := database.GetValue([]byte("species"), []byte(vars["id"]))
+	w.Write([]byte(value))
 }
 
 func speciesPagesHandler(w http.ResponseWriter, req *http.Request) {
-	data := database.GetBucketCount([]byte("species"))
-	w.Write([]byte(strconv.Itoa(data)))
+	counts := database.GetBucketCount([]byte("species"))
+	w.Write([]byte(strconv.Itoa(counts)))
 }

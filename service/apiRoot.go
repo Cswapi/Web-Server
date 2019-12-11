@@ -9,8 +9,8 @@ import (
 
 var pagelen = 5
 
-//handle a request with method GET and path "/api/".
-func apiHandler(formatter *render.Render) negroni.HandlerFunc {
+// api root 处理：得到一个API目录结构.
+func apiRootHandler(formatter *render.Render) negroni.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request, next http.HandlerFunc) {
 		formatter.JSON(w, http.StatusOK, struct {
 			Films     string `json:"films"`

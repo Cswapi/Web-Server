@@ -15,7 +15,7 @@ import (
 func vehiclesHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access Origin", "*")
 		req.ParseForm()
 		page := 1
 		w.Write([]byte("{\"result\" : \n["))
@@ -48,11 +48,11 @@ func getVehiclesById(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	data := database.GetValue([]byte("vehicles"), []byte(vars["id"]))
-	w.Write([]byte(data))
+	value := database.GetValue([]byte("vehicles"), []byte(vars["id"]))
+	w.Write([]byte(value))
 }
 
 func vehiclesPagesHandler(w http.ResponseWriter, req *http.Request) {
-	data := database.GetBucketCount([]byte("vehicles"))
-	w.Write([]byte(strconv.Itoa(data)))
+	counts := database.GetBucketCount([]byte("vehicles"))
+	w.Write([]byte(strconv.Itoa(counts)))
 }

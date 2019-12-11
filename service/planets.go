@@ -11,11 +11,10 @@ import (
 	"github.com/Cswapi/Web-Server/database/database"
 )
 
-//handle a request with method GET and path "/api/".
 func planetsHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access Origin", "*")
 		req.ParseForm()
 		page := 1
 		w.Write([]byte("{\"result\" : \n["))
@@ -48,11 +47,11 @@ func getPlanetsById(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	data := database.GetValue([]byte("planets"), []byte(vars["id"]))
-	w.Write([]byte(data))
+	value := database.GetValue([]byte("planets"), []byte(vars["id"]))
+	w.Write([]byte(value))
 }
 
 func planetsPagesHandler(w http.ResponseWriter, req *http.Request) {
-	data := database.GetBucketCount([]byte("planets"))
-	w.Write([]byte(strconv.Itoa(data)))
+	counts := database.GetBucketCount([]byte("planets"))
+	w.Write([]byte(strconv.Itoa(counts)))
 }

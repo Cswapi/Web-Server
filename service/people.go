@@ -11,11 +11,11 @@ import (
 	"github.com/Cswapi/Web-Server/database/database"
 )
 
-//handle a request with method GET and path "/api/".
+// 分页查询资源
 func peopleHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access Origin", "*")
 		req.ParseForm()
 		page := 1
 		w.Write([]byte("{\"result\" : \n["))
@@ -48,11 +48,11 @@ func getPeopleById(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	data := database.GetValue([]byte("people"), []byte(vars["id"]))
-	w.Write([]byte(data))
+	value := database.GetValue([]byte("people"), []byte(vars["id"]))
+	w.Write([]byte(value))
 }
 
 func peoplePagesHandler(w http.ResponseWriter, req *http.Request) {
-	data := database.GetBucketCount([]byte("people"))
-	w.Write([]byte(strconv.Itoa(data)))
+	counts := database.GetBucketCount([]byte("people"))
+	w.Write([]byte(strconv.Itoa(counts)))
 }
