@@ -10,4 +10,4 @@
 - 安装`Negroni`库：`go get github.com/urfave/negroni`  
 - 安装`render`库：`go get github.com/unrolled/render`
 - 安装`jwt-go`接口：`go get github.com/dgrijalva/jwt-go`
-- 安装 
+- 安装`boltdb`数据库：`go get github.com/boltdb/bolt` 

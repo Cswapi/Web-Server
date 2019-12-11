@@ -6,8 +6,8 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/Cswapi/server/database/database"
-	"github.com/Cswapi/server/database/swapi"
+	"github.com/Cswapi/Web-Server/database/database"
+	"github.com/Cswapi/Web-Server/database/swapi"
 )
 
 var dbName = "./database/Cswapi.db"
